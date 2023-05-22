@@ -54,7 +54,7 @@ example of the selected board):
 
 Then to build the board's firmware run:
 
-    $ make BOARD=PYBV11
+    $ make USER_C_MODULES=../../usermods BOARD=STM32F769DISC deploy-stlink
 
 The above command should produce binary images in the `build-PYBV11/`
 subdirectory (or the equivalent directory for the board specified).
