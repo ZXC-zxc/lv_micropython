@@ -180,7 +180,7 @@ void *sdram_start(void) {
 }
 
 void *sdram_end(void) {
-    return (void *)(SDRAM_START_ADDRESS + MICROPY_HW_SDRAM_SIZE);
+    return (void *)(SDRAM_START_ADDRESS + MICROPY_HW_SDRAM_HEAP_SIZE);
 }
 
 static void sdram_init_seq(SDRAM_HandleTypeDef

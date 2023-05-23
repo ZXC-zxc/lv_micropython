@@ -129,6 +129,7 @@ extern struct _spi_bdev_t spi_bdev;
 // #define MICROPY_HW_CLK_PLLQ (8)
 
 #define MICROPY_HW_SDRAM_SIZE (128 * 1024 * 1024 / 8) // 128 Mbit
+#define MICROPY_HW_SDRAM_HEAP_SIZE (16 * 1024 * 1024 / 8) // 128 Mbit
 #define MICROPY_HW_SDRAM_STARTUP_TEST (0)
 #define MICROPY_HEAP_START sdram_start()
 #define MICROPY_HEAP_END sdram_end()

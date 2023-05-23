@@ -76,7 +76,7 @@ STATIC mp_obj_t display_init(){
 	       - Low Level Initialization
 	 */
 	HAL_Init();
-    BSP_SDRAM_Init();
+  //BSP_SDRAM_Init();
 
 	//SystemClock_Config();
 
