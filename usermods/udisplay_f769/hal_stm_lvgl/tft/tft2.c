@@ -580,11 +580,11 @@ static void DMA_TransferError(DMA_HandleTypeDef *han)
   * @param  None
   * @retval None
   */
-void DMA_STREAM_IRQHANDLER(void)
-{
-    /* Check the interrupt and clear flag */
-    HAL_DMA_IRQHandler(&DmaHandle);
-}
+// void DMA_STREAM_IRQHANDLER(void)
+// {
+//     /* Check the interrupt and clear flag */
+//     HAL_DMA_IRQHandler(&DmaHandle);
+// }
 
 /**
   * @brief  Initialize the BSP LCD Msp.

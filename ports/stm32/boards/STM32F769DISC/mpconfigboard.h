@@ -119,7 +119,7 @@ extern struct _spi_bdev_t spi_bdev;
 #define MICROPY_HW_ETH_RMII_TXD0    (pin_G13)
 #define MICROPY_HW_ETH_RMII_TXD1    (pin_G14)
 
-#if 0
+#if 1
 // Optional SDRAM configuration.
 
 // Note: This requires SYSCLK <= 200MHz. 192MHz example below:
