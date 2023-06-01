@@ -453,7 +453,7 @@ const dma_descr_t dma_ADC_3_RX = { DMA2_Channel5, DMA_REQUEST_0, dma_id_11,  NUL
 const dma_descr_t dma_DAC_2_TX = { DMA2_Channel5, DMA_REQUEST_3, dma_id_11,  &dma_init_struct_dac };
 const dma_descr_t dma_SDIO_0_TX= { DMA2_Channel5, DMA_REQUEST_7, dma_id_11,  &dma_init_struct_sdio };
 const dma_descr_t dma_I2C_1_RX = { DMA2_Channel6, DMA_REQUEST_5, dma_id_12,  &dma_init_struct_spi_i2c };
-const dma_descr_t dma_I2C_1_TX = { DMA2_Channel7, DMA_REQUEST_5, dma_id_13,  &dma_init_struct_spi_i2c };
+const dma_descr_t dma_I2C_1_TX = { DMA2_Channel7, DMA_REQUEST_5, ,  &dma_init_struct_spi_i2c };
 */
 
 static const uint8_t dma_irqn[NSTREAM] = {
@@ -862,11 +862,15 @@ void DMA2_Stream6_IRQHandler(void) {
     }
     IRQ_EXIT(DMA2_Stream6_IRQn);
 }
-void DMA2_Stream7_IRQHandler(void) {
+
+extern void DMA2_Stream7_IRQHandler2(void); 
+void DMA2_Stream7_IRQHandler(void)
+{
     IRQ_ENTER(DMA2_Stream7_IRQn);
     if (dma_handle[dma_id_15] != NULL) {
         HAL_DMA_IRQHandler(dma_handle[dma_id_15]);
     }
+    DMA2_Stream7_IRQHandler2();
     IRQ_EXIT(DMA2_Stream7_IRQn);
 }
 

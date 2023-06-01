@@ -24,10 +24,10 @@
 /* DMA Stream parameters definitions. You can modify these parameters to select
    a different DMA Stream and/or channel.
    But note that only DMA2 Streams are capable of Memory to Memory transfers. */
-#define DMA_STREAM               DMA2_Stream0
-#define DMA_CHANNEL              DMA_CHANNEL_0
-#define DMA_STREAM_IRQ           DMA2_Stream0_IRQn
-#define DMA_STREAM_IRQHANDLER    DMA2_Stream0_IRQHandler
+#define DMA_STREAM               DMA2_Stream7
+#define DMA_CHANNEL              DMA_CHANNEL_7
+#define DMA_STREAM_IRQ           DMA2_Stream7_IRQn
+#define DMA_STREAM_IRQHANDLER    DMA2_Stream7_IRQHandler2
 
 #if TFT_NO_TEARING
 #define ZONES               4       /*Divide the screen into zones to handle tearing effect*/
@@ -138,26 +138,26 @@ void monitor_cb(lv_disp_drv_t * d, uint32_t t, uint32_t p)
 /**
  * Initialize your display here
  */
+#define buffer1 LCD_FB_START_ADDRESS + 800 * 480 *4 
+#define buffer2 buffer1 + 800 * 480 * 4
 void tft_init(void)
 {
-	BSP_SDRAM_Init();
+	//BSP_SDRAM_Init();
 	/* Deactivate speculative/cache access to first FMC Bank to save FMC bandwidth */
-	FMC_Bank1->BTCR[0] = 0x000030D2;
-	LCD_Config();
-
-	/* Send Display On DCS Command to display */
-	HAL_DSI_ShortWrite(&(hdsi_discovery),
-			0,
-			DSI_DCS_SHORT_PKT_WRITE_P1,
-			OTM8009A_CMD_DISPON,
-			0x00);
+	BSP_LCD_Init();
+	BSP_LCD_LayerDefaultInit(LTDC_ACTIVE_LAYER_BACKGROUND, LCD_FB_START_ADDRESS);
+	BSP_LCD_SelectLayer(LTDC_ACTIVE_LAYER_BACKGROUND);
+	BSP_LCD_Clear(0xFFFFFFFF);
+	BSP_LCD_SetBackColor(0xFFFFFFFF);
 
 	DMA_Config();
 
-	static lv_color_t disp_buf1[TFT_HOR_RES * 24];
-	static lv_color_t disp_buf2[TFT_HOR_RES * 24];
+	static lv_color_t *disp_buf1 = (lv_color_t *)buffer1;
+	static lv_color_t *disp_buf2 = (lv_color_t *)buffer2;
+	//static lv_color_t disp_buf1[800*36];
+	//static lv_color_t disp_buf2[800*36];
 	static lv_disp_draw_buf_t buf;
-	lv_disp_draw_buf_init(&buf, disp_buf1, disp_buf2, TFT_HOR_RES * 24);
+	lv_disp_draw_buf_init(&buf, disp_buf1, disp_buf2, 800 * 480 * 4);
 
 	lv_disp_drv_init(&disp_drv);
 	disp_drv.draw_buf = &buf;

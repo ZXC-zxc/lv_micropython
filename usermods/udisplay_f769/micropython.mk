@@ -2,7 +2,7 @@ DISPLAY_MOD_DIR := $(USERMOD_DIR)
 
 
 SRC_USERMOD += $(DISPLAY_MOD_DIR)/display.c
-SRC_USERMOD += $(DISPLAY_MOD_DIR)/hal_stm_lvgl/tft/tft2.c
+SRC_USERMOD += $(DISPLAY_MOD_DIR)/hal_stm_lvgl/tft/tft.c
 SRC_USERMOD += $(DISPLAY_MOD_DIR)/hal_stm_lvgl/touchpad/touchpad.c
 SRC_USERMOD += $(DISPLAY_MOD_DIR)/Utilities/STM32F769I-Discovery/stm32f769i_discovery.c
 SRC_USERMOD += $(DISPLAY_MOD_DIR)/Utilities/STM32F769I-Discovery/stm32f769i_discovery_lcd.c
